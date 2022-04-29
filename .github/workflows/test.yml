@@ -1,7 +1,7 @@
 # This is a basic workflow to help you get started with Actions
 
 # 将修改后的README.md自动转换为pdf文件，保存在release中
-name: md2pdf
+name: test
 
 # Controls when the workflow will run
 on:
@@ -21,23 +21,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # 创建release文件夹
-      - name: mkdir release
-        run: mkdir release
-
-      # 使用pandoc进行转换
-      - uses: docker://ghcr.io/44smkn/pandoc/ja:0.1.1
+      - uses: actions/checkout@v1
+      - run: mkdir output
+      - uses: maxheld83/pandoc@v2
         with:
-          args: README.md -s -o release/result.pdf --pdf-engine=wkhtmltopdf
-    
-      # 将创建的pdf文件上传
-      - name: release
-        uses: softprops/action-gh-release@v1
+          args: "--pdf-engine=xelatex --output=output/README.pdf README.md"
+      - uses: actions/upload-artifact@master
         with:
-          tag_name: release_pdf
-          files: release/result.pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: output
+          path: output
