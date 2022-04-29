@@ -1,11 +1,5 @@
 # md_to_pdf
 
----
-title: AI-model
-date: 2022-03-23 15:55:17
-
----
-
 Welcome！简单介绍一下 GAN、CYCLEGAN、CYCLEGAN-VC、CYCLEGAN-VC2 四个模型。
 
 GAN：
