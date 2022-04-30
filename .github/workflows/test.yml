@@ -30,15 +30,3 @@ jobs:
         with:
           name: releases
           path: releases
-          
-  release:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: release_pdf
-          files: releases/README.pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
