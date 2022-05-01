@@ -22,10 +22,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v1
-      - run: mkdir artifact
+      - run: mkdir releases
       - uses: maxheld83/pandoc@v2
         with:
-          args: "--pdf-engine=xelatex --output=artifact/build.pdf README.md"
+          args: "--pdf-engine=xelatex --output=releases/README.pdf README.md"
 
   release:
     runs-on: ubuntu-18.04
@@ -34,7 +34,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v1.0.0
-          files: artifact/build.pdf
+          tag_name: Release
+          files: releases/README.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
