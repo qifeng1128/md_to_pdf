@@ -26,21 +26,7 @@ jobs:
       - uses: maxheld83/pandoc@v2
         with:
           args: "--pdf-engine=xelatex --output=artifact/build.pdf README.md"
-      - name: UploadArtifact
-        uses: actions/upload-artifact@master
-        with:
-          name: build-${{ github.run_number }}
-          path: artifact
 
-      - name: PushCommit
-        run: |
-          cp artifact/build.pdf backups/${{ steps.date.outputs.date }}-build${{ github.run_number }}.pdf
-          cp assets/REANDME.md backups/${{ steps.date.outputs.date }}-build${{ github.run_number }}.md
-          git config user.name qifeng1128
-          git config user.email 1419616173@qq.com
-          git add .
-          git commit -m "CI: produce ${{ steps.date.outputs.date }}-build${{ github.run_number }}.pdf"
-          git push
   release:
     runs-on: ubuntu-18.04
     steps:
