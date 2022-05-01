@@ -34,7 +34,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: release_pdf
+          tag_name: v1.0.0
           files: artifact/build.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
